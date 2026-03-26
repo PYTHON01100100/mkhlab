@@ -6,11 +6,11 @@
 
 **The first Arabic-first plugin for [OpenClaw](https://github.com/openclaw/openclaw).**
 
-14 Arabic AI skills · Dialect-aware · Culturally sensitive · Works with any model
+20 Arabic AI skills · 3 programmatic tools · WhatsApp channel · Dialect-aware · Works with any model
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![OpenClaw Plugin](https://img.shields.io/badge/OpenClaw-Plugin-blue.svg)](https://github.com/openclaw/openclaw)
-[![Skills](https://img.shields.io/badge/Skills-14-orange.svg)](#skills)
+[![Skills](https://img.shields.io/badge/Skills-20-orange.svg)](#skills)
 
 </div>
 
@@ -69,7 +69,7 @@ pipx install -e ./tools/raqeeb
 openclaw skills list | grep "openclaw-extra"
 ```
 
-You should see 14 skills, all ✓ ready.
+You should see 20 skills, all ✓ ready.
 
 ## Skills
 
@@ -79,12 +79,22 @@ You should see 14 skills, all ✓ ready.
 | 🕌 `prayer-times` | أوقات الصلاة — Prayer times via Aladhan API |
 | 📅 `hijri-calendar` | التقويم الهجري — Hijri ↔ Gregorian dates + Islamic events |
 | 📖 `quran-search` | بحث القرآن — Search Quran by keyword, surah, or ayah |
+| 📜 `hadith-search` | بحث الأحاديث — Search Hadith across Bukhari, Muslim, and more |
 
 ### 🗣️ Language
 | Skill | Description |
 |-------|-------------|
 | 🔄 `translate` | ترجمة — Arabic ↔ English with dialect awareness |
 | 🗣️ `dialect-detect` | اللهجات — Detect and match user's Arabic dialect |
+| ✏️ `arabic-grammar` | مدقق القواعد — Fix Arabic grammar and spelling errors |
+| 🔤 `tashkeel` | التشكيل — Add diacritics (harakat) to Arabic text |
+
+### 🔊 Media
+| Skill | Description |
+|-------|-------------|
+| 🔊 `voxtral-tts` | نص إلى صوت — Arabic text-to-speech via Voxtral/SILMA |
+| 🎙️ `whisper-arabic` | صوت إلى نص — Transcribe Arabic audio via Whisper |
+| 👁️ `arabic-ocr` | التعرف على النص — Extract Arabic text from images (OCR) |
 
 ### 🔧 Arabic NLP Tools
 | Skill | Description |
@@ -98,6 +108,18 @@ You should see 14 skills, all ✓ ready.
 | 🔍 `majal` | فاحص البيانات — Inspect Arabic training data (16 quality checks) |
 | 🕸️ `safha` | كاشط الويب — Scrape Arabic web content for ML training data |
 | ↩️ `raqeeb` | فاحص RTL — Find RTL bugs in HTML/CSS (24 checks, 0-100 score) |
+
+### 🔌 Programmatic Tools (via plugin)
+| Tool | Description |
+|------|-------------|
+| `arabic-greeting` | Auto-respond to Islamic greetings appropriately |
+| `arabizi-convert` | Convert Franco-Arabic (7abibi, 3adi) to Arabic script |
+| `hijri-today` | Quick Hijri date lookup |
+
+### 📱 Channels
+| Channel | Description |
+|---------|-------------|
+| WhatsApp | Scoped service bot — prayer times, Hijri, Quran, translation |
 
 ## Model Support
 
@@ -132,12 +154,19 @@ It runs on top of OpenClaw — like openclaw-china does for Chinese platforms.
 │  │ persona │ │ 🦅 مخلب       │  │
 │  └─────────┘ └───────────────┘  │
 │  ┌─────────────────────────────┐│
-│  │     14 Arabic Skills        ││
+│  │     20 Arabic Skills        ││
 │  │ prayer · hijri · quran      ││
-│  │ translate · dialect         ││
-│  │ arabench · khalas · sarih   ││
-│  │ bidi-guard · qalam · artok  ││
-│  │ majal · safha · raqeeb      ││
+│  │ hadith · translate · dialect││
+│  │ grammar · tashkeel · tts    ││
+│  │ whisper · ocr · arabench    ││
+│  │ khalas · sarih · bidi-guard ││
+│  │ qalam · artok · majal       ││
+│  │ safha · raqeeb              ││
+│  └─────────────────────────────┘│
+│  ┌─────────────────────────────┐│
+│  │     WhatsApp Channel        ││
+│  │ Scoped: prayer, hijri,      ││
+│  │ quran, translate             ││
 │  └─────────────────────────────┘│
 └─────────────────────────────────┘
 ```
@@ -152,11 +181,13 @@ It runs on top of OpenClaw — like openclaw-china does for Chinese platforms.
 ## Roadmap
 
 - [x] Phase 0: Workspace + persona + 5 API skills
-- [x] Phase 1: 14 skills, all ready, plugin structure
-- [ ] Phase 2: WhatsApp channel (scoped to skills, per Meta policy)
-- [ ] Phase 3: Arabic TTS/STT integration (Voxtral, SILMA, ArTST)
+- [x] Phase 1: 14 skills, all ready, plugin structure, GitHub repo
+- [x] Phase 2: WhatsApp channel scaffolded (scoped to skills, per Meta policy)
+- [x] Phase 3: 20 skills + TTS/STT/OCR + 3 programmatic tools + hadith + grammar + tashkeel
 - [ ] Phase 4: Arabic RAG with AraGemma embeddings
 - [ ] Phase 5: ClawHub publishing
+- [ ] Phase 6: Telegram channel
+- [ ] Phase 7: Arabic voice assistant mode
 
 ## Contributing
 

@@ -1,0 +1,25 @@
+{
+  "id": "mkhlab-whatsapp",
+  "name": "مخلب WhatsApp Channel",
+  "description": "WhatsApp Business API channel for مخلب. Scoped to Arabic skills: prayer times, translation, Quran search, Hijri calendar.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "phoneNumberId": {
+        "type": "string",
+        "description": "WhatsApp Business phone number ID from Meta dashboard"
+      },
+      "verifyToken": {
+        "type": "string",
+        "description": "Webhook verification token (you choose this)"
+      },
+      "port": {
+        "type": "number",
+        "description": "Port for webhook server",
+        "default": 3001
+      }
+    },
+    "required": ["phoneNumberId", "verifyToken"]
+  }
+}

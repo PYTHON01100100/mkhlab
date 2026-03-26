@@ -1,0 +1,13 @@
+{
+  "name": "@mkhlab/whatsapp-channel",
+  "version": "0.1.0",
+  "description": "WhatsApp Business channel for مخلب Arabic AI assistant",
+  "type": "module",
+  "main": "index.ts",
+  "openclaw": {
+    "extensions": ["./index.ts"]
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
