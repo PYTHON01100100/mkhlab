@@ -149,5 +149,95 @@ export default definePluginEntry({
         }
       },
     });
+
+    // ── Native Arabic Speech Provider ──
+    // Registers Arabic TTS via Voxtral/SILMA as a native OpenClaw speech provider
+    if (typeof api.registerSpeechProvider === "function") {
+      api.registerSpeechProvider({
+        id: "mkhlab-arabic-tts",
+        label: "Arabic TTS (Voxtral)",
+        languages: ["ar", "ar-SA", "ar-EG", "ar-AE", "ar-MA", "ar-JO"],
+        async synthesize(text: string, options?: { voice?: string }) {
+          const voice = options?.voice || "aria";
+          const apiKey = process.env.MISTRAL_API_KEY;
+          if (!apiKey) {
+            throw new Error("MISTRAL_API_KEY required for Arabic TTS");
+          }
+          const res = await fetch("https://api.mistral.ai/v1/audio/speech", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: "voxtral-mini-2025-12",
+              input: text,
+              voice,
+              language: "ar",
+              response_format: "mp3",
+            }),
+          });
+          if (!res.ok) throw new Error(`TTS failed: ${res.status}`);
+          return { audio: await res.arrayBuffer(), format: "mp3" };
+        },
+      });
+    }
+
+    // ── Native Arabic Web Search Provider ──
+    // Arabic-optimized search with trusted Arabic source prioritization
+    if (typeof api.registerWebSearchProvider === "function") {
+      api.registerWebSearchProvider({
+        id: "mkhlab-arabic-search",
+        label: "Arabic Web Search",
+        async search(query: string, options?: { limit?: number }) {
+          const limit = options?.limit || 5;
+          // Use DuckDuckGo with Arabic region
+          const encodedQuery = encodeURIComponent(
+            query + " site:*.sa OR site:*.eg OR site:*.ae OR site:*.ma"
+          );
+          const res = await fetch(
+            `https://api.duckduckgo.com/?q=${encodedQuery}&format=json&kl=xa-ar`
+          );
+          const data = await res.json();
+
+          const results = (data.RelatedTopics || [])
+            .slice(0, limit)
+            .map((topic: { Text?: string; FirstURL?: string }) => ({
+              title: topic.Text?.slice(0, 100) || "",
+              url: topic.FirstURL || "",
+              snippet: topic.Text || "",
+            }));
+
+          return { results };
+        },
+      });
+    }
+
+    // ── Native Arabic Media Understanding (OCR) ──
+    if (typeof api.registerMediaUnderstandingProvider === "function") {
+      api.registerMediaUnderstandingProvider({
+        id: "mkhlab-arabic-ocr",
+        label: "Arabic OCR (Tesseract)",
+        supportedTypes: ["image/png", "image/jpeg", "image/webp"],
+        async understand(
+          media: ArrayBuffer,
+          mimeType: string
+        ): Promise<{ text: string }> {
+          // Delegate to tesseract CLI
+          const { execSync } = await import("child_process");
+          const fs = await import("fs");
+          const tmpPath = `/tmp/mkhlab_ocr_${Date.now()}.png`;
+          fs.writeFileSync(tmpPath, Buffer.from(media));
+          try {
+            const result = execSync(
+              `tesseract ${tmpPath} stdout -l ara+eng 2>/dev/null`
+            ).toString();
+            return { text: result.trim() };
+          } finally {
+            fs.unlinkSync(tmpPath);
+          }
+        },
+      });
+    }
   },
 });

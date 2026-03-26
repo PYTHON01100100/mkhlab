@@ -227,6 +227,27 @@ Contributions welcome! Areas where help is needed:
 - Arabic model benchmarks
 - WhatsApp channel integration
 
+## Security
+
+مخلب takes security seriously:
+- **Bidi attack prevention** — strips dangerous Unicode override characters (CVE-2021-42574)
+- **Input sanitization** — all Arabic text validated before processing
+- **No stored credentials** — all API keys via environment variables
+- **NemoClaw compatible** — NVIDIA's security sandbox for AI agents
+- **Offline moderation** — `sarih` content filter runs locally, no data leaves your machine
+
+See [SECURITY.md](SECURITY.md) for full details and vulnerability reporting.
+
+## Agent Templates
+
+Pre-configured Arabic agents for specialized use cases:
+
+| Agent | Skills | Use Case |
+|-------|--------|----------|
+| 📖 عالم (Scholar) | Quran, Hadith, Hijri, prayer, finance | Islamic research |
+| 🔄 مترجم (Translator) | Translation, dialect, grammar, tashkeel | Professional translation |
+| 💻 مطوّر (Developer) | Code review, bidi-guard, RTL, docs | Arabic-first development |
+
 ## License
 
 MIT — مفتوح المصدر للجميع.
@@ -235,7 +256,9 @@ MIT — مفتوح المصدر للجميع.
 
 <div align="center">
 
-**مخلب** — Built for Arabic speakers, by Arabic speakers.
+**مخلب** — From the Saudi Open Source Community, for the Arab world.
+
+من المجتمع السعودي مفتوح المصدر — للعالم العربي كله 🇸🇦
 
 صُنع بحب 🇸🇦🇪🇬🇦🇪🇯🇴🇱🇧🇮🇶🇲🇦🇩🇿🇹🇳🇱🇾🇸🇾🇵🇸🇰🇼🇶🇦🇧🇭🇴🇲🇸🇩🇾🇪
 
