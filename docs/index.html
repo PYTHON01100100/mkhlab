@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مخلب — Mkhlab | The First Arabic Plugin for OpenClaw</title>
+  <meta name="description" content="مساعدك الذكي العربي. مفتوح المصدر. يشتغل على جهازك. بياناتك عندك. 60 skills. 4 agents. 2 channels.">
+  <meta name="theme-color" content="#1e1e2e">
+  <link rel="icon" type="image/svg+xml" href="logo-simple.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1e1e2e;
+      --bg-alt: #181825;
+      --surface: #313244;
+      --surface-hover: #45475a;
+      --overlay: #585b70;
+      --text: #cdd6f4;
+      --text-dim: #a6adc8;
+      --text-faint: #6c7086;
+      --accent: #89b4fa;
+      --accent-alt: #74c7ec;
+      --teal: #94e2d5;
+      --green: #a6e3a1;
+      --peach: #fab387;
+      --mauve: #cba6f7;
+      --red: #f38ba8;
+      --yellow: #f9e2af;
+      --saudi-green: #006c35;
+      --saudi-white: #ffffff;
+      --font-ar: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+      --font-mono: 'IBM Plex Mono', 'Menlo', monospace;
+      --max-w: 1200px;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-ar);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== UTILITY ========== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .ltr { direction: ltr; text-align: left; }
+    .rtl { direction: rtl; text-align: right; }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.3; }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 16px; }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      direction: ltr;
+    }
+
+    .section-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--text-dim);
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-alt); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .animate {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger > .animate:nth-child(1) { transition-delay: 0ms; }
+    .stagger > .animate:nth-child(2) { transition-delay: 80ms; }
+    .stagger > .animate:nth-child(3) { transition-delay: 160ms; }
+    .stagger > .animate:nth-child(4) { transition-delay: 240ms; }
+    .stagger > .animate:nth-child(5) { transition-delay: 320ms; }
+    .stagger > .animate:nth-child(6) { transition-delay: 400ms; }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      font-family: var(--font-ar);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      background: var(--accent-alt);
+      color: var(--bg);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(137, 180, 250, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--surface-hover);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ========== NAV ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(30, 30, 46, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(49, 50, 68, 0.6);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--bg-alt);
+        flex-direction: column;
+        padding: 16px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--surface);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(137, 180, 250, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .hero-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 24px;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 8px 32px rgba(137, 180, 250, 0.15));
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      color: var(--text-dim);
+      margin-bottom: 8px;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: var(--text-faint);
+      margin-bottom: 36px;
+      direction: ltr;
+      text-align: center;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      animation: fadeIn 1s ease 0.4s both;
+    }
+
+    .stat-item {
+      padding: 20px 28px;
+      text-align: center;
+      flex: 1;
+      min-width: 140px;
+      border-left: 1px solid rgba(88, 91, 112, 0.3);
+    }
+
+    .stat-item:last-child { border-left: none; }
+
+    [dir="rtl"] .stat-item {
+      border-left: none;
+      border-right: 1px solid rgba(88, 91, 112, 0.3);
+    }
+    [dir="rtl"] .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* ========== PROBLEM ========== */
+    .problem {
+      background: var(--bg-alt);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .problem-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .problem-card:hover {
+      border-color: var(--surface-hover);
+      transform: translateY(-4px);
+    }
+
+    .problem-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .problem-card h3 {
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .problem-card p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .problem-stat {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--red);
+      margin: 8px 0;
+    }
+
+    .problem-stat-good {
+      color: var(--green);
+    }
+
+    .problem-arrow {
+      color: var(--text-faint);
+      font-size: 1.5rem;
+      margin: 0 8px;
+    }
+
+    /* ========== SKILLS GRID ========== */
+    .skills-section {
+      background: var(--bg);
+    }
+
+    .skill-category {
+      margin-bottom: 48px;
+    }
+
+    .skill-category-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--surface);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-category-count {
+      background: var(--surface);
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 99px;
+      font-weight: 500;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      background: rgba(137, 180, 250, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .skill-emoji {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .skill-info h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+      direction: ltr;
+      text-align: left;
+      font-family: var(--font-mono);
+    }
+
+    .skill-info p {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* ========== SAUDI ECOSYSTEM ========== */
+    .saudi-section {
+      background: var(--bg-alt);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .saudi-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--saudi-green), var(--saudi-green) 50%, var(--saudi-white) 50%);
+    }
+
+    .saudi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .saudi-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .saudi-card:hover {
+      border-color: rgba(0, 108, 53, 0.4);
+    }
+
+    .saudi-card h3 {
+      font-size: 1.1rem;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .saudi-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .saudi-tag {
+      background: rgba(0, 108, 53, 0.12);
+      color: var(--green);
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-weight: 500;
+      direction: ltr;
+    }
+
+    .saudi-stat-banner {
+      background: linear-gradient(135deg, rgba(0, 108, 53, 0.15), rgba(0, 108, 53, 0.05));
+      border: 1px solid rgba(0, 108, 53, 0.2);
+      border-radius: var(--radius);
+      padding: 24px 32px;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .saudi-stat-banner .stat-num {
+      font-size: 2rem;
+      color: var(--green);
+    }
+
+    /* ========== AGENTS ========== */
+    .agents-section {
+      background: var(--bg);
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .agent-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agent-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      transition: opacity 0.3s;
+    }
+
+    .agent-card:nth-child(1)::before { background: var(--green); }
+    .agent-card:nth-child(2)::before { background: var(--accent); }
+    .agent-card:nth-child(3)::before { background: var(--mauve); }
+    .agent-card:nth-child(4)::before { background: var(--peach); }
+
+    .agent-card:hover {
+      border-color: var(--surface-hover);
+      transform: translateY(-4px);
+    }
+
+    .agent-emoji {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .agent-name-ar {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .agent-name-en {
+      font-size: 0.9rem;
+      color: var(--text-faint);
+      font-weight: 500;
+      margin-bottom: 12px;
+      direction: ltr;
+    }
+
+    .agent-desc {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+
+    /* ========== ARCHITECTURE ========== */
+    .arch-section {
+      background: var(--bg-alt);
+    }
+
+    .arch-diagram {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      overflow-x: auto;
+      margin-top: 32px;
+      border: 1px solid var(--surface-hover);
+    }
+
+    .arch-diagram pre {
+      font-family: var(--font-mono);
+      font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+      color: var(--text);
+      line-height: 1.5;
+      direction: ltr;
+      text-align: left;
+      white-space: pre;
+      margin: 0;
+    }
+
+    .arch-diagram .hl-accent { color: var(--accent); }
+    .arch-diagram .hl-green { color: var(--green); }
+    .arch-diagram .hl-peach { color: var(--peach); }
+    .arch-diagram .hl-mauve { color: var(--mauve); }
+    .arch-diagram .hl-dim { color: var(--text-faint); }
+
+    .arch-note {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: rgba(137, 180, 250, 0.06);
+      border-radius: var(--radius-sm);
+      border-right: 3px solid var(--accent);
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    /* ========== MODELS ========== */
+    .models-section {
+      background: var(--bg);
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .model-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .model-card:hover {
+      border-color: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+
+    .model-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .model-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      direction: ltr;
+    }
+
+    .model-type {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      margin-top: 4px;
+    }
+
+    /* ========== INSTALL ========== */
+    .install-section {
+      background: var(--bg-alt);
+    }
+
+    .install-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 32px;
+      border: 1px solid var(--surface-hover);
+    }
+
+    .install-step {
+      margin-bottom: 24px;
+    }
+
+    .install-step:last-child { margin-bottom: 0; }
+
+    .install-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-left: 12px;
+    }
+
+    .install-step-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .code-block {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin-top: 12px;
+      overflow-x: auto;
+      position: relative;
+      border: 1px solid var(--surface);
+    }
+
+    .code-block pre {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--text);
+      direction: ltr;
+      text-align: left;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .code-block .comment { color: var(--text-faint); }
+    .code-block .cmd { color: var(--green); }
+    .code-block .string { color: var(--yellow); }
+    .code-block .key { color: var(--accent); }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--surface);
+      border: 1px solid var(--surface-hover);
+      color: var(--text-dim);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--surface-hover); color: var(--text); }
+
+    .install-json {
+      margin-top: 16px;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--surface);
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+
+    .footer-tagline {
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    .footer-flags {
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+      line-height: 2;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 640px) {
+      section { padding: 56px 0; }
+
+      .hero { min-height: auto; padding-top: 100px; padding-bottom: 40px; }
+      .hero-logo { width: 72px; height: 72px; border-radius: 18px; }
+
+      .stat-item { padding: 14px 16px; min-width: 120px; }
+      .stat-num { font-size: 1.2rem; }
+
+      .skills-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+      .skill-card { padding: 10px 12px; }
+      .skill-info h4 { font-size: 0.78rem; }
+      .skill-info p { font-size: 0.72rem; }
+
+      .saudi-grid { grid-template-columns: 1fr; }
+      .agents-grid { grid-template-columns: 1fr 1fr; }
+      .models-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+      .arch-diagram { padding: 16px; }
+      .arch-diagram pre { font-size: 0.6rem; }
+
+      .install-box { padding: 20px; }
+    }
+
+    @media (max-width: 380px) {
+      .agents-grid { grid-template-columns: 1fr; }
+      .stats-bar { flex-direction: column; }
+      .stat-item { border-right: none !important; border-left: none !important; border-bottom: 1px solid rgba(88, 91, 112, 0.3); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+
+    /* ========== REDUCED MOTION ========== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .animate { opacity: 1; transform: none; transition: none; }
+      .btn:hover { transform: none; }
+      .skill-card:hover, .problem-card:hover, .agent-card:hover, .model-card:hover { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== NAV ==================== -->
+  <nav aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand" aria-label="مخلب — الصفحة الرئيسية">
+        <img src="logo-simple.svg" alt="" width="36" height="36">
+        <span>مخلب</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links" role="list">
+        <li><a href="#problem">المشكلة</a></li>
+        <li><a href="#skills">المهارات</a></li>
+        <li><a href="#saudi">السعودية</a></li>
+        <li><a href="#agents">الوكلاء</a></li>
+        <li><a href="#architecture">البنية</a></li>
+        <li><a href="#models">النماذج</a></li>
+        <li><a href="#install">التثبيت</a></li>
+        <li><a href="https://github.com/mousaabumazin/mkhlab" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <img src="logo-simple.svg" alt="مخلب logo" class="hero-logo" width="100" height="100">
+        <h1>مخلب — Mkhlab</h1>
+        <p class="hero-tagline">مساعدك الذكي العربي. مفتوح المصدر. يشتغل على جهازك. بياناتك عندك.</p>
+        <p class="hero-subtitle">The first Arabic-first plugin for OpenClaw. 60 skills. 4 agents. 2 channels.</p>
+        <div class="hero-buttons">
+          <a href="https://github.com/mousaabumazin/mkhlab" target="_blank" rel="noopener" class="btn btn-primary" aria-label="View on GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="#install" class="btn btn-outline">ابدأ الآن</a>
+        </div>
+        <div class="stats-bar" role="list" aria-label="Project statistics">
+          <div class="stat-item" role="listitem">
+            <span class="stat-num">60</span>
+            <span class="stat-label">Skill</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Agents</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Channels</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Hooks</span>
+          </div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-num">420M+</span>
+            <span class="stat-label">Arabic Speakers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROBLEM ==================== -->
+  <section class="problem" id="problem">
+    <div class="container">
+      <span class="section-label animate">The Problem</span>
+      <h2 class="animate">420 مليون ناطق بالعربية.<br>صفر مساعدات ذكاء اصطناعي مفتوحة المصدر.</h2>
+      <p class="section-subtitle animate">Arabic is the 5th most spoken language. Yet AI tools treat it as an afterthought.</p>
+      <div class="problem-grid stagger">
+        <div class="problem-card animate">
+          <span class="icon">📉</span>
+          <h3>Dialect Accuracy Drop</h3>
+          <div>
+            <span class="problem-stat problem-stat-good">85%</span>
+            <span class="problem-arrow">&rarr;</span>
+            <span class="problem-stat">45%</span>
+          </div>
+          <p>GPT accuracy plummets from 85% on MSA to 45% on Arabic dialects. Millions of daily conversations lost in translation.</p>
+        </div>
+        <div class="problem-card animate">
+          <span class="icon">💸</span>
+          <h3>Token Tax</h3>
+          <div>
+            <span class="problem-stat">2-3x</span>
+          </div>
+          <p>Arabic costs 2-3x more tokens than English for the same content. Arabic speakers pay more for less.</p>
+        </div>
+        <div class="problem-card animate">
+          <span class="icon">🔒</span>
+          <h3>Zero Arabic in OpenClaw</h3>
+          <div>
+            <span class="problem-stat-good" style="font-size:1.5rem;font-weight:700;display:inline-block;margin:8px 0;">337K Stars</span>
+          </div>
+          <p>OpenClaw is the most popular AI coding assistant. 337K+ stars on GitHub. Zero Arabic skills, zero Arabic agents, zero Arabic support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS ==================== -->
+  <section class="skills-section" id="skills">
+    <div class="container">
+      <span class="section-label animate">Skills</span>
+      <h2 class="animate">60 مهارة جاهزة</h2>
+      <p class="section-subtitle animate">Every skill follows the OpenClaw SKILL.md format. Plug and play.</p>
+
+      <!-- Islamic & Cultural -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F54C; إسلامية وثقافية</span>
+          <span class="skill-category-count">6</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F54B;</span><div class="skill-info"><h4>prayer-times</h4><p>مواقيت الصلاة حسب الموقع</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F319;</span><div class="skill-info"><h4>hijri-calendar</h4><p>التقويم الهجري والتحويل</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4D6;</span><div class="skill-info"><h4>quran-search</h4><p>بحث في القرآن الكريم</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4DC;</span><div class="skill-info"><h4>hadith-search</h4><p>بحث في الأحاديث النبوية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F508;</span><div class="skill-info"><h4>adhan-player</h4><p>مشغّل صوت الأذان</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4B0;</span><div class="skill-info"><h4>islamic-finance</h4><p>التمويل الإسلامي والمرابحة</p></div></div>
+        </div>
+      </div>
+
+      <!-- Language & Culture -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F5E3; لغة وثقافة</span>
+          <span class="skill-category-count">6</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F310;</span><div class="skill-info"><h4>translate</h4><p>ترجمة عربي-إنجليزي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3AD;</span><div class="skill-info"><h4>dialect-detect</h4><p>كشف اللهجة العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4DD;</span><div class="skill-info"><h4>arabic-grammar</h4><p>تدقيق نحوي وإملائي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x064E;</span><div class="skill-info"><h4>tashkeel</h4><p>تشكيل النصوص العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3B5;</span><div class="skill-info"><h4>arabic-poetry</h4><p>شعر عربي وأوزان</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4DB;</span><div class="skill-info"><h4>arabic-names</h4><p>معاني الأسماء العربية</p></div></div>
+        </div>
+      </div>
+
+      <!-- Media -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F50A; وسائط</span>
+          <span class="skill-category-count">4</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F399;</span><div class="skill-info"><h4>voxtral-tts</h4><p>تحويل نص إلى كلام عربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3A4;</span><div class="skill-info"><h4>whisper-arabic</h4><p>تحويل كلام عربي إلى نص</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4F7;</span><div class="skill-info"><h4>arabic-ocr</h4><p>قراءة نصوص من صور</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F916;</span><div class="skill-info"><h4>voice-assistant</h4><p>مساعد صوتي عربي</p></div></div>
+        </div>
+      </div>
+
+      <!-- Arabic NLP -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F527; معالجة اللغة العربية</span>
+          <span class="skill-category-count">10</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F4CA;</span><div class="skill-info"><h4>arabench</h4><p>تقييم أداء النماذج العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x2705;</span><div class="skill-info"><h4>khalas</h4><p>تلخيص النصوص العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4AC;</span><div class="skill-info"><h4>sarih</h4><p>تحليل المشاعر العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F6E1;</span><div class="skill-info"><h4>bidi-guard</h4><p>حماية من هجمات BiDi</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x270D;</span><div class="skill-info"><h4>qalam</h4><p>تصحيح الإملاء العربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3AF;</span><div class="skill-info"><h4>artok</h4><p>التحليل الصرفي العربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4CF;</span><div class="skill-info"><h4>majal</h4><p>استخراج الكيانات العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4C4;</span><div class="skill-info"><h4>safha</h4><p>تحليل صفحات الويب العربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F440;</span><div class="skill-info"><h4>raqeeb</h4><p>رقابة المحتوى العربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4DA;</span><div class="skill-info"><h4>arabic-rag</h4><p>استرجاع معزز بالمعرفة</p></div></div>
+        </div>
+      </div>
+
+      <!-- Search & Dev -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F50E; بحث وتطوير</span>
+          <span class="skill-category-count">2</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F310;</span><div class="skill-info"><h4>arabic-web-search</h4><p>بحث ويب عربي متقدم</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4BB;</span><div class="skill-info"><h4>arabic-code-review</h4><p>مراجعة كود بتعليقات عربية</p></div></div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F4DA; تعليم</span>
+          <span class="skill-category-count">2</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F4D0;</span><div class="skill-info"><h4>arabic-math</h4><p>رياضيات بالعربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F52C;</span><div class="skill-info"><h4>arabic-science</h4><p>علوم بالعربي</p></div></div>
+        </div>
+      </div>
+
+      <!-- Saudi Ecosystem -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F1F8;&#x1F1E6; المنظومة السعودية</span>
+          <span class="skill-category-count">17</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x1F4CD;</span><div class="skill-info"><h4>saudi-address</h4><p>العنوان الوطني</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4F1;</span><div class="skill-info"><h4>saudi-apps</h4><p>تطبيقات سعودية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3E2;</span><div class="skill-info"><h4>saudi-business</h4><p>سجل تجاري ووثق</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F6D2;</span><div class="skill-info"><h4>saudi-ecommerce</h4><p>سلة وزد ونون</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F9FE;</span><div class="skill-info"><h4>saudi-einvoice</h4><p>فوترة زاتكا</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F355;</span><div class="skill-info"><h4>saudi-food</h4><p>فودكس وهنقرستيشن</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F465;</span><div class="skill-info"><h4>saudi-hr</h4><p>موارد بشرية ومُسدر</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F194;</span><div class="skill-info"><h4>saudi-identity</h4><p>نفاذ والهوية الرقمية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x2696;</span><div class="skill-info"><h4>saudi-legal</h4><p>ناجز والأنظمة</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F6A2;</span><div class="skill-info"><h4>saudi-customs</h4><p>فسح والجمارك</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3E6;</span><div class="skill-info"><h4>saudi-openbanking</h4><p>مصرفية مفتوحة</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4C2;</span><div class="skill-info"><h4>saudi-opendata</h4><p>بيانات حكومية مفتوحة</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4B3;</span><div class="skill-info"><h4>saudi-pay</h4><p>مدفوعات سعودية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4E6;</span><div class="skill-info"><h4>saudi-procurement</h4><p>اعتماد والمشتريات</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F69A;</span><div class="skill-info"><h4>saudi-shipping</h4><p>شحن ولوجستيات</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4C8;</span><div class="skill-info"><h4>saudi-stocks</h4><p>سوق الأسهم السعودي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4F6;</span><div class="skill-info"><h4>saudi-telecom</h4><p>اتصالات سعودية</p></div></div>
+        </div>
+      </div>
+
+      <!-- Regional & Lifestyle -->
+      <div class="skill-category animate">
+        <div class="skill-category-title">
+          <span>&#x1F4F1; إقليمية ونمط حياة</span>
+          <span class="skill-category-count">13</span>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-emoji">&#x2708;</span><div class="skill-info"><h4>arab-travel</h4><p>سفر وسياحة عربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F373;</span><div class="skill-info"><h4>arabic-cooking</h4><p>وصفات طبخ عربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4E7;</span><div class="skill-info"><h4>arabic-email</h4><p>بريد إلكتروني عربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1FA7A;</span><div class="skill-info"><h4>arabic-health</h4><p>معلومات صحية بالعربي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F476;</span><div class="skill-info"><h4>arabic-kids</h4><p>محتوى تعليمي للأطفال</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4DC;</span><div class="skill-info"><h4>arabic-legal</h4><p>استشارات قانونية عربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4CB;</span><div class="skill-info"><h4>arabic-resume</h4><p>سيرة ذاتية عربية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F42A;</span><div class="skill-info"><h4>livestock-manager</h4><p>إدارة المواشي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F47B;</span><div class="skill-info"><h4>snapchat-content</h4><p>محتوى سناب شات</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F4E8;</span><div class="skill-info"><h4>unifonic</h4><p>رسائل SMS وواتساب</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F3D6;</span><div class="skill-info"><h4>saudi-tourism</h4><p>سياحة سعودية</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x1F5E3;</span><div class="skill-info"><h4>saudi-tts</h4><p>تحويل نص لكلام سعودي</p></div></div>
+          <div class="skill-card"><span class="skill-emoji">&#x26C5;</span><div class="skill-info"><h4>saudi-weather</h4><p>طقس المدن السعودية</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SAUDI ECOSYSTEM ==================== -->
+  <section class="saudi-section" id="saudi">
+    <div class="container">
+      <span class="section-label animate">Saudi Digital Infrastructure</span>
+      <h2 class="animate">&#x1F1F8;&#x1F1E6; المنظومة الرقمية السعودية</h2>
+      <p class="section-subtitle animate">Deep integrations with Saudi Arabia's government platforms, fintech, commerce, and logistics APIs.</p>
+
+      <div class="saudi-grid stagger">
+        <div class="saudi-card animate">
+          <h3>&#x1F3DB; حكومية</h3>
+          <div class="saudi-tags">
+            <span class="saudi-tag">ZATCA</span>
+            <span class="saudi-tag">Wathq</span>
+            <span class="saudi-tag">Najiz</span>
+            <span class="saudi-tag">Etimad</span>
+            <span class="saudi-tag">GOSI / Masdr</span>
+            <span class="saudi-tag">Nafath</span>
+            <span class="saudi-tag">Fasah</span>
+          </div>
+        </div>
+
+        <div class="saudi-card animate">
+          <h3>&#x1F4B3; تقنية مالية</h3>
+          <div class="saudi-tags">
+            <span class="saudi-tag">Moyasar</span>
+            <span class="saudi-tag">Tap</span>
+            <span class="saudi-tag">HyperPay</span>
+            <span class="saudi-tag">PayTabs</span>
+            <span class="saudi-tag">Tabby</span>
+            <span class="saudi-tag">Tamara</span>
+            <span class="saudi-tag">STC Pay</span>
+            <span class="saudi-tag">Lean</span>
+          </div>
+        </div>
+
+        <div class="saudi-card animate">
+          <h3>&#x1F6D2; تجارة</h3>
+          <div class="saudi-tags">
+            <span class="saudi-tag">Salla</span>
+            <span class="saudi-tag">Zid</span>
+            <span class="saudi-tag">Noon</span>
+          </div>
+        </div>
+
+        <div class="saudi-card animate">
+          <h3>&#x1F69A; لوجستيات</h3>
+          <div class="saudi-tags">
+            <span class="saudi-tag">SMSA</span>
+            <span class="saudi-tag">Aramex</span>
+            <span class="saudi-tag">Naqel</span>
+            <span class="saudi-tag">J&T</span>
+            <span class="saudi-tag">BARQ</span>
+          </div>
+        </div>
+
+        <div class="saudi-card animate">
+          <h3>&#x1F355; طعام</h3>
+          <div class="saudi-tags">
+            <span class="saudi-tag">Foodics</span>
+            <span class="saudi-tag">HungerStation</span>
+            <span class="saudi-tag">Jahez</span>
+            <span class="saudi-tag">Careem</span>
+          </div>
+        </div>
+
+        <div class="saudi-card animate">
+          <h3>&#x1F4F6; اتصالات</h3>
+          <div class="saudi-tags">
+            <span class="saudi-tag">STC</span>
+            <span class="saudi-tag">Mobily</span>
+            <span class="saudi-tag">Zain</span>
+            <span class="saudi-tag">Unifonic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="saudi-stat-banner animate">
+        <span class="stat-num">11,439</span>
+        <span class="stat-label" style="display:block;margin-top:4px;">datasets from 289 organizations via data.gov.sa</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AGENTS ==================== -->
+  <section class="agents-section" id="agents">
+    <div class="container">
+      <span class="section-label animate">Agents</span>
+      <h2 class="animate">4 وكلاء ذكاء اصطناعي</h2>
+      <p class="section-subtitle animate">Pre-configured agent templates. Each one is a persona with curated skills.</p>
+
+      <div class="agents-grid stagger">
+        <div class="agent-card animate">
+          <span class="agent-emoji">&#x1F4D6;</span>
+          <div class="agent-name-ar">عالِم</div>
+          <div class="agent-name-en">Scholar</div>
+          <p class="agent-desc">باحث إسلامي متخصص. بحث في القرآن والحديث، مواقيت الصلاة، التقويم الهجري، والتمويل الإسلامي.</p>
+        </div>
+
+        <div class="agent-card animate">
+          <span class="agent-emoji">&#x1F504;</span>
+          <div class="agent-name-ar">مترجم</div>
+          <div class="agent-name-en">Translator</div>
+          <p class="agent-desc">مترجم محترف. ترجمة عربي-إنجليزي، كشف اللهجات، تشكيل، وتدقيق نحوي.</p>
+        </div>
+
+        <div class="agent-card animate">
+          <span class="agent-emoji">&#x1F4BB;</span>
+          <div class="agent-name-ar">مطوّر</div>
+          <div class="agent-name-en">Developer</div>
+          <p class="agent-desc">مبرمج عربي أولاً. مراجعة كود بتعليقات عربية، حماية BiDi، وأدوات NLP.</p>
+        </div>
+
+        <div class="agent-card animate">
+          <span class="agent-emoji">&#x1F4BC;</span>
+          <div class="agent-name-ar">رائد أعمال</div>
+          <div class="agent-name-en">Entrepreneur</div>
+          <p class="agent-desc">رائد أعمال سعودي. سجل تجاري، فوترة إلكترونية، مدفوعات، شحن، وتجارة إلكترونية.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ARCHITECTURE ==================== -->
+  <section class="arch-section" id="architecture">
+    <div class="container">
+      <span class="section-label animate">Architecture</span>
+      <h2 class="animate">بنية إضافة، ليس نسخة</h2>
+      <p class="section-subtitle animate">مخلب is a plugin, not a fork. It extends OpenClaw without modifying its core.</p>
+
+      <div class="arch-diagram animate">
+        <pre>
+<span class="hl-dim">┌──────────────────────────────────────────────────────────────────┐</span>
+<span class="hl-dim">│</span>                        <span class="hl-accent">OpenClaw</span>                                <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>            <span class="hl-dim">(Your existing installation)</span>                       <span class="hl-dim">│</span>
+<span class="hl-dim">├──────────────────────────────────────────────────────────────────┤</span>
+<span class="hl-dim">│</span>                                                                  <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-green">~/.openclaw/</span>                                                   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">├──</span> openclaw.json         <span class="hl-dim">← plugin registry</span>                   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">├──</span> <span class="hl-peach">extensions/</span>                                                <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-peach">mkhlab-core/</span>        <span class="hl-dim">← 3 hooks (greeting, arabizi, hijri)</span><span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-peach">whatsapp-channel/</span>   <span class="hl-dim">← WhatsApp Business API</span>            <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">└──</span> <span class="hl-peach">telegram-channel/</span>   <span class="hl-dim">← Telegram Bot API</span>                <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">├──</span> <span class="hl-mauve">skills/</span>                                                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-mauve">prayer-times/</span>SKILL.md                                   <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-mauve">translate/</span>SKILL.md                                      <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-mauve">saudi-einvoice/</span>SKILL.md                                <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">└──</span> <span class="hl-mauve">... (60 skills)</span>                                        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">├──</span> <span class="hl-accent">agents/</span>                                                    <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-accent">scholar.md</span>          <span class="hl-dim">← Islamic research agent</span>           <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-accent">translator.md</span>       <span class="hl-dim">← Translation agent</span>                <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">├──</span> <span class="hl-accent">developer.md</span>        <span class="hl-dim">← Arabic coding agent</span>              <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">│</span>   <span class="hl-dim">└──</span> <span class="hl-accent">entrepreneur.md</span>     <span class="hl-dim">← Saudi business agent</span>             <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>  <span class="hl-dim">└──</span> SOUL.md                <span class="hl-dim">← Arabic persona &amp; behavior</span>        <span class="hl-dim">│</span>
+<span class="hl-dim">│</span>                                                                  <span class="hl-dim">│</span>
+<span class="hl-dim">└──────────────────────────────────────────────────────────────────┘</span>
+</pre>
+      </div>
+
+      <div class="arch-note animate">
+        <strong>Plugin, not fork.</strong> مخلب follows the same pattern as <code>openclaw-china</code>. Drop it into your OpenClaw directory, register the extension, and all 60 skills are immediately available.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODELS ==================== -->
+  <section class="models-section" id="models">
+    <div class="container">
+      <span class="section-label animate">Model Support</span>
+      <h2 class="animate">يشتغل مع أي نموذج</h2>
+      <p class="section-subtitle animate">Works with any model OpenClaw supports. Optimized prompts for Arabic-capable models.</p>
+
+      <div class="models-grid stagger">
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F7E3;</span>
+          <div class="model-name">Claude</div>
+          <div class="model-type">Anthropic</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F7E2;</span>
+          <div class="model-name">GPT-4o</div>
+          <div class="model-type">OpenAI</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F535;</span>
+          <div class="model-name">Gemini</div>
+          <div class="model-type">Google</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F7E1;</span>
+          <div class="model-name">Qwen</div>
+          <div class="model-type">Alibaba</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F50D;</span>
+          <div class="model-name">DeepSeek</div>
+          <div class="model-type">DeepSeek AI</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F1E6;&#x1F1EA;</span>
+          <div class="model-name">Jais</div>
+          <div class="model-type">Inception / G42</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F1F8;&#x1F1E6;</span>
+          <div class="model-name">ALLaM</div>
+          <div class="model-type">SDAIA</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x2B50;</span>
+          <div class="model-name">SILMA</div>
+          <div class="model-type">SILMA AI</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F985;</span>
+          <div class="model-name">Falcon-H1</div>
+          <div class="model-type">TII</div>
+        </div>
+        <div class="model-card animate">
+          <span class="model-icon">&#x1F4BB;</span>
+          <div class="model-name">Ollama</div>
+          <div class="model-type">Local / Any Model</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INSTALL ==================== -->
+  <section class="install-section" id="install">
+    <div class="container">
+      <span class="section-label animate">Quick Start</span>
+      <h2 class="animate">التثبيت في 3 خطوات</h2>
+      <p class="section-subtitle animate">Clone, configure, and start using Arabic skills in under a minute.</p>
+
+      <div class="install-box animate">
+        <div class="install-step">
+          <span class="install-step-num" aria-label="Step 1">1</span>
+          <span class="install-step-label">استنسخ المستودع</span>
+          <div class="code-block" dir="ltr">
+            <button class="copy-btn" aria-label="Copy to clipboard" onclick="copyCode(this)">Copy</button>
+            <pre><span class="cmd">git clone</span> https://github.com/mousaabumazin/mkhlab.git
+<span class="cmd">cd</span> mkhlab</pre>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <span class="install-step-num" aria-label="Step 2">2</span>
+          <span class="install-step-label">سجّل الإضافة</span>
+          <div class="code-block install-json" dir="ltr">
+            <button class="copy-btn" aria-label="Copy to clipboard" onclick="copyCode(this)">Copy</button>
+            <pre><span class="comment">// Add to ~/.openclaw/openclaw.json</span>
+{
+  <span class="key">"mcpServers"</span>: {
+    <span class="key">"mkhlab"</span>: {
+      <span class="key">"command"</span>: <span class="string">"node"</span>,
+      <span class="key">"args"</span>: [<span class="string">"PATH_TO/mkhlab/extensions/mkhlab-core/index.js"</span>]
+    }
+  }
+}</pre>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <span class="install-step-num" aria-label="Step 3">3</span>
+          <span class="install-step-label">ابدأ الاستخدام</span>
+          <div class="code-block" dir="ltr">
+            <button class="copy-btn" aria-label="Copy to clipboard" onclick="copyCode(this)">Copy</button>
+            <pre><span class="cmd">openclaw</span>
+<span class="comment"># Now try: /prayer-times or /translate or /saudi-einvoice</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-tagline">From the Saudi open source community &#x1F1F8;&#x1F1E6; for the Arab world</p>
+      <div class="footer-links">
+        <a href="https://github.com/mousaabumazin/mkhlab" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/mousaabumazin/mkhlab/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+        <a href="https://github.com/mousaabumazin/mkhlab/issues" target="_blank" rel="noopener">Issues</a>
+      </div>
+      <div class="footer-flags" aria-label="Arab world flags">
+        &#x1F1F8;&#x1F1E6;&#x1F1EA;&#x1F1EC;&#x1F1E6;&#x1F1EA;&#x1F1EF;&#x1F1F4;&#x1F1F1;&#x1F1E7;&#x1F1EE;&#x1F1F6;&#x1F1F2;&#x1F1E6;&#x1F1E9;&#x1F1FF;&#x1F1F9;&#x1F1F3;&#x1F1F1;&#x1F1FE;&#x1F1F8;&#x1F1FE;&#x1F1F5;&#x1F1F8;&#x1F1F0;&#x1F1FC;&#x1F1F6;&#x1F1E6;&#x1F1E7;&#x1F1ED;&#x1F1F4;&#x1F1F2;&#x1F1F8;&#x1F1E9;&#x1F1FE;&#x1F1EA;
+      </div>
+      <p class="footer-copy">&copy; 2026 مخلب (Mkhlab). Open source under MIT License.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== MINIMAL JS ==================== -->
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll animations via IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+    // Copy button
+    function copyCode(btn) {
+      const codeBlock = btn.parentElement.querySelector('pre');
+      const text = codeBlock.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

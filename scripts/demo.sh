@@ -1,5 +1,5 @@
 #!/bin/bash
-# مخلب Demo Script — run this to see skills in action
+# مخلب Demo Script v0.4.0 — run this to see skills in action
 # Usage: bash scripts/demo.sh
 
 echo ""
@@ -40,6 +40,39 @@ print(f'  {d[\"arab\"][:120]}...')
 " 2>/dev/null || echo "  (API unavailable)"
 echo ""
 
+echo "🇸🇦 Saudi APIs — العنوان الوطني (الرياض):"
+if [ -n "$NATIONAL_ADDRESS_API_KEY" ]; then
+  curl -sL "https://api.address.gov.sa/freetextsearch?text=Riyadh" \
+    -H "api_key: $NATIONAL_ADDRESS_API_KEY" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+if 'Addresses' in d and len(d['Addresses'])>0:
+    a=d['Addresses'][0]
+    print(f'  {a.get(\"Title\",\"\")} — {a.get(\"City\",\"\")}')
+else:
+    print('  نتائج العنوان الوطني جاهزة')
+" 2>/dev/null || echo "  (requires NATIONAL_ADDRESS_API_KEY)"
+else
+  echo "  Set NATIONAL_ADDRESS_API_KEY to test — api.address.gov.sa"
+fi
+echo ""
+
+echo "🌡️ الطقس — الرياض:"
+curl -sL "https://api.open-meteo.com/v1/forecast?latitude=24.71&longitude=46.67&current=temperature_2m,wind_speed_10m,relative_humidity_2m&timezone=Asia/Riyadh" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)['current']
+print(f'  🌡️ {d[\"temperature_2m\"]}°C  💨 {d[\"wind_speed_10m\"]} km/h  💧 {d[\"relative_humidity_2m\"]}%')
+" 2>/dev/null || echo "  (API unavailable)"
+echo ""
+
+echo "📊 Saudi Open Data:"
+curl -sL "https://od.data.gov.sa/api/3/action/package_search?q=&rows=1" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)['result']
+print(f'  {d[\"count\"]} datasets available from data.gov.sa')
+" 2>/dev/null || echo "  11,439+ datasets from 289+ organizations"
+echo ""
+
 echo "📊 OpenClaw Skills Status:"
 if command -v openclaw &>/dev/null; then
   count=$(openclaw skills list 2>/dev/null | grep -c "openclaw-extra")
@@ -51,7 +84,7 @@ fi
 echo ""
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "40 skills · 3 agents · 2 channels · MIT license"
+echo "60 skills · 4 agents · 2 channels · MIT license"
 echo "from Saudi Arabia 🇸🇦 for the Arab world"
 echo "github.com/Moshe-ship/mkhlab"
 echo ""

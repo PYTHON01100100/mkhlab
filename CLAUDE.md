@@ -1,7 +1,7 @@
 # مخلب (Mkhlab) — Project Instructions
 
 ## What is this?
-Arabic-first OpenClaw plugin — 20+ skills, 2 messaging channels, 3 programmatic tools.
+Arabic-first OpenClaw plugin — 60 skills, 2 messaging channels, 3 programmatic tools.
 Plugin architecture (NOT a fork) following the openclaw-china pattern.
 
 ## Structure
@@ -37,6 +37,14 @@ metadata: {"openclaw": {"emoji": "X", "requires": {"bins": ["tool"]}}}
 - Hadith API (fawazahmed0): Hadith search (no key needed)
 - WhatsApp Cloud API: messaging (needs Meta Business credentials)
 - Telegram Bot API: messaging (needs BotFather token)
+- Wathq API: commercial registration, legal docs (key needed)
+- ZATCA Fatoorah: e-invoicing (sandbox free)
+- National Address API: address lookup (key needed)
+- Open-Meteo: weather (free, no key)
+- data.gov.sa: open data (free, no key)
+- Salla API: ecommerce (OAuth2)
+- Lean Technologies: open banking (key needed)
+- Unifonic: SMS/WhatsApp CPaaS (key needed)
 
 ## CLI tools (installed via pipx from ~/Projects/)
 arabench, khalas, sarih, bidi-guard, qalam, artok, majal, safha, raqeeb

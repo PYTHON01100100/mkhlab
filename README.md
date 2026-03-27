@@ -8,11 +8,12 @@
 
 **The first Arabic-first plugin for [OpenClaw](https://github.com/openclaw/openclaw).**
 
-40 Arabic AI skills · 3 tools · 2 channels · Dialect-aware · Works with any model
+60 Arabic AI skills · 3 tools · 2 channels · Dialect-aware · Works with any model
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![OpenClaw Plugin](https://img.shields.io/badge/OpenClaw-Plugin-blue.svg)](https://github.com/openclaw/openclaw)
-[![Skills](https://img.shields.io/badge/Skills-40-orange.svg)](#skills)
+[![Skills](https://img.shields.io/badge/Skills-60-orange.svg)](#skills)
+[![Landing Page](https://img.shields.io/badge/Website-Live-teal.svg)](https://moshe-ship.github.io/mkhlab/)
 
 </div>
 
@@ -24,7 +25,7 @@
 
 ## What is مخلب?
 
-**مخلب** (Mkhlab, "claw" in Arabic) is an Arabic-first plugin for OpenClaw — the open-source AI coding assistant. It adds 14 Arabic-focused skills while working with **any model provider** (Claude, GPT, Gemini, Qwen, Jais, ALLaM, Ollama, and more).
+**مخلب** (Mkhlab, "claw" in Arabic) is an Arabic-first plugin for OpenClaw — the open-source AI coding assistant. It adds 60 Arabic-focused skills while working with **any model provider** (Claude, GPT, Gemini, Qwen, Jais, ALLaM, Ollama, and more).
 
 No other AI assistant offers this combination:
 - **Dialect detection** — responds in your dialect (Egyptian, Gulf, Levantine, Maghrebi, Iraqi)
@@ -75,7 +76,7 @@ pipx install -e ./tools/raqeeb
 openclaw skills list | grep "openclaw-extra"
 ```
 
-You should see 40 skills, all ✓ ready.
+You should see 60 skills, all ✓ ready.
 
 ## Skills
 
@@ -133,6 +134,35 @@ You should see 40 skills, all ✓ ready.
 | 📐 `arabic-math` | رياضيات — Math solver with Arabic numerals + Arabic terms |
 | 🔬 `arabic-science` | مصطلحات علمية — Science term translator (CS, physics, chemistry, bio) |
 
+### 🇸🇦 Saudi Ecosystem (17)
+| Skill | Description |
+|-------|-------------|
+| 📍 `saudi-address` | العنوان الوطني — National Address lookup, validation, geocoding via SPL API |
+| 📱 `saudi-apps` | التطبيقات السعودية — Guide to 50+ Saudi apps (govt, food, shopping, transport) |
+| 🏢 `saudi-business` | السجل التجاري — Commercial registration & business data via Wathq API |
+| 🛒 `saudi-ecommerce` | التجارة الإلكترونية — Salla, Zid, Noon marketplace APIs |
+| 🧾 `saudi-einvoice` | الفوترة الإلكترونية — ZATCA Fatoorah e-invoicing (compliance, reporting, clearance) |
+| 🍽️ `saudi-food` | المطاعم والتوصيل — Foodics POS, HungerStation, Jahez, Careem APIs |
+| 👔 `saudi-hr` | الموارد البشرية — Masdr/GOSI employment data, Mudad WPS, Qiwa, Musaned |
+| 🪪 `saudi-identity` | الهوية الرقمية — Nafath digital identity & Yakeen verification (Elm) |
+| ⚖️ `saudi-legal` | الخدمات القانونية — Najiz (63+ MOJ APIs), Wathq legal documents |
+| 🛃 `saudi-customs` | الجمارك والتجارة — Fasah import/export platform, ZATCA customs data |
+| 🏦 `saudi-openbanking` | الخدمات المصرفية — SAMA Open Banking, Lean Technologies, bank APIs |
+| 📊 `saudi-opendata` | البيانات المفتوحة — data.gov.sa (11,439+ datasets from 289+ orgs) |
+| 💳 `saudi-pay` | بوابات الدفع — Moyasar, Tap, HyperPay, PayTabs, Tabby, Tamara, STC Pay |
+| 📋 `saudi-procurement` | المشتريات الحكومية — Etimad government procurement & contracts |
+| 🚚 `saudi-shipping` | الشحن والتوصيل — SMSA, Aramex, Naqel, J&T, BARQ carrier APIs |
+| 📈 `saudi-stocks` | أسهم تداول — Saudi stock prices, TASI index, CMA data |
+| 📱 `saudi-telecom` | الاتصالات — STC, Mobily, Zain developer APIs (SMS, OTP, payments) |
+| 🕌 `saudi-tourism` | السياحة — Visit Saudi API, destinations, events, tourist visa |
+| 🗣️ `saudi-tts` | نص لصوت سعودي — NAMAA-Saudi-TTS, Lahajati (192+ dialects) |
+| 🌡️ `saudi-weather` | الطقس — Weather data for Saudi cities via Open-Meteo |
+
+### 💬 Communication (1)
+| Skill | Description |
+|-------|-------------|
+| 💬 `unifonic` | يونيفونك — Saudi CPaaS for SMS, WhatsApp, Voice, OTP |
+
 ### 🔌 Programmatic Tools (3, via plugin)
 | Tool | Description |
 |------|-------------|
@@ -144,7 +174,7 @@ You should see 40 skills, all ✓ ready.
 | Channel | Description |
 |---------|-------------|
 | WhatsApp | Scoped service bot — prayer, Hijri, Quran, hadith, translation |
-| Telegram | Full access to all 40 skills via bot (polling + webhook) |
+| Telegram | Full access to all 60 skills via bot (polling + webhook) |
 
 ## Model Support
 
@@ -179,7 +209,7 @@ It runs on top of OpenClaw — like openclaw-china does for Chinese platforms.
 │  │ persona │ │ 🦅 مخلب       │  │
 │  └─────────┘ └───────────────┘  │
 │  ┌─────────────────────────────┐│
-│  │     30 Arabic Skills        ││
+│  │     60 Arabic Skills        ││
 │  │ Islamic: prayer · hijri     ││
 │  │   quran · hadith · adhan    ││
 │  │   finance                   ││
@@ -194,6 +224,16 @@ It runs on top of OpenClaw — like openclaw-china does for Chinese platforms.
 │  │   raqeeb · arabic-rag       ││
 │  │ Dev: code-review · web-search│
 │  │ Edu: math · science         ││
+│  │ Saudi: address · apps ·     ││
+│  │   business · ecommerce ·    ││
+│  │   einvoice · food · hr ·    ││
+│  │   identity · legal · customs││
+│  │   openbanking · opendata ·  ││
+│  │   pay · procurement ·       ││
+│  │   shipping · stocks ·       ││
+│  │   telecom · tourism · tts · ││
+│  │   weather                   ││
+│  │ Comms: unifonic             ││
 │  └─────────────────────────────┘│
 │  ┌─────────────────────────────┐│
 │  │     2 Channels              ││
@@ -218,6 +258,7 @@ It runs on top of OpenClaw — like openclaw-china does for Chinese platforms.
 - [x] Phase 3: TTS/STT/OCR + grammar + tashkeel + hadith
 - [x] Phase 4: Arabic RAG + Telegram channel + 9 more skills
 - [x] Phase 5: 40 skills — finance, poetry, names, education, voice, code review, cooking, travel, health, Saudi apps, Snapchat, kids
+- [x] Phase 5.5: Saudi ecosystem — 17 Saudi API integrations (Wathq, ZATCA, Nafath, Salla, Moyasar, Lean, Foodics, Unifonic...)
 - [ ] Phase 6: ClawHub marketplace publishing
 - [ ] Phase 7: End-to-end testing + CI/CD
 - [ ] Phase 8: Community contributions + dialect expansion
