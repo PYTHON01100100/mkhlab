@@ -113,9 +113,9 @@ Arabic deserves better AI and this is the start
 ## X/Twitter — Arabic
 
 ```
-أطلقت مخلب 🦅 v0.4.0 أول إضافة عربية لـ @OpenClaw اللي أسسه @steipete
+أطلقت مخلب v0.4.0 أول إضافة عربية لـ @OpenClaw اللي أسسه @steipete
 
-بنيته بـ @claudeai من @AnthropicAI. تحية لـ @TIIuae @NVIDIAAI @SDAIA_SA
+بنيته بـ @claudeai من @AnthropicAI. تحية لـ @TIIuae @NVIDIAAI @SDAIA_SA @Aborhaan
 
 ٤٢٠ مليون عربي وما في ولا مساعد ذكاء اصطناعي عربي مفتوح المصدر. GPT تنزل دقته من ٨٥٪ لـ ٤٥٪ لما تكلمه بلهجتك. العربي يكلفك ضعفين لثلاثة أضعاف الإنجليزي بالتوكنات. OpenClaw عنده ٣٣٧ ألف نجمة وما فيه ولا شي عربي. ولا skill. ولا plugin. ولا شي.
 
@@ -129,82 +129,68 @@ Arabic deserves better AI and this is the start
 
 تحويل نص لصوت عربي عبر Voxtral. تفريغ صوت عربي عبر Whisper. التعرف على نص عربي بالصور. خط أنابيب صوتي كامل. صوت سعودي حقيقي عبر NAMAA-Saudi-TTS. ١٩٢+ لهجة عربية عبر Lahajati.
 
-٩ أدوات NLP عربية بنيتها بشكل مستقل ودمجتها كمهارات. arabench يقيّم جودة أي نموذج بالعربي عبر ٨ فئات. khalas يحسّن البرومبتات العربية ويقلل التكلفة. sarih يفلتر المحتوى السام بـ٥ لهجات بدون إنترنت. bidi-guard يكشف هجمات Trojan Source بالكود. qalam يولّد توثيق عربي من Python/JS/TS. artok يقارن تكلفة التوكنات العربية عبر ١٨ محلل. majal يفحص بيانات التدريب بـ١٦ فحص جودة. safha يكشط وينظف محتوى عربي من الويب. raqeeb يفحص مشاكل RTL ويعطي تقييم من ١٠٠.
+٩ أدوات NLP عربية بنيتها بشكل مستقل ودمجتها كمهارات. arabench يقيّم جودة أي نموذج بالعربي عبر ٨ فئات. khalas يحسّن البرومبتات العربية ويقلل التكلفة. sarih يفلتر المحتوى السام بـ٥ لهجات بدون إنترنت. bidi-guard يكشف هجمات Trojan Source بالكود. qalam يولّد توثيق عربي. artok يقارن تكلفة التوكنات العربية عبر ١٨ محلل. majal يفحص بيانات التدريب بـ١٦ فحص جودة. safha يكشط وينظف محتوى عربي من الويب. raqeeb يفحص مشاكل RTL ويعطي تقييم من ١٠٠.
+
+مراجعة كود متخصصة بالعربي تفحص أمان Unicode وصحة RTL وأنماط regex العربية وتطبيع الألف والتاء المربوطة. بحث ويب عربي يعطي أولوية للمصادر العربية الموثوقة. رياضيات بالعربي مع دعم الأرقام العربية. ترجمة مصطلحات علمية تغطي حاسوب وفيزياء وكيمياء وأحياء.
 
 وبعدين المنظومة السعودية. ١٧ مهارة تربطك مباشرة بالبنية التحتية الرقمية السعودية.
 
-الفوترة الإلكترونية عبر @Zatca_sa — فاتورة. تقارير ومطابقة للفواتير المبسطة والضريبية. الاستعلام عن السجلات التجارية عبر @Wathq_sa — ١٥+ واجهة حكومية. العنوان الوطني عبر @SPL_KSA_online. الهوية الرقمية عبر نفاذ ويقين من @elm.
+الفوترة الإلكترونية عبر @Zatca_sa فاتورة. تقارير ومطابقة للفواتير المبسطة والضريبية. الاستعلام عن السجلات التجارية عبر @Wathq_sa بأكثر من ١٥ واجهة حكومية. العنوان الوطني عبر @SPL_KSA_online. الهوية الرقمية عبر نفاذ ويقين من @elm.
 
-بوابات الدفع: @moyasarcom @gotapnow @HyperPay @PayTabs. تقسيط: @paywithtabby و @useTamara. دفع جوال: @stcpay_ksa. خدمات مصرفية مفتوحة عبر @LeanTechHQ بإطار @SAMA_GOV. بيانات أسهم تداول وهيئة السوق المالية.
+بوابات الدفع عبر @moyasarcom و @gotapnow و @HyperPay و @PayTabs. تقسيط عبر @paywithtabby و @useTamara. دفع جوال عبر @stcpay_ksa. خدمات مصرفية مفتوحة عبر @LeanTechHQ بإطار @SAMA_GOV. بيانات أسهم تداول وهيئة السوق المالية.
 
-الشحن والتوصيل: @smsaexpress @Aramex @NaqelExpr @jtexpressme @BarqFleet. التجارة الإلكترونية: @SallaApp (٦٨ ألف+ تاجر) و @zidappcom. توصيل المطاعم وأنظمة POS: @foodics (٣٠ ألف+ مطعم) @HungerStation @JahezApp @CareemKSA.
+الشحن والتوصيل عبر @smsaexpress و @Aramex و @NaqelExpr و @jtexpressme و @BarqFleet. التجارة الإلكترونية عبر @SallaApp اللي عندها أكثر من ٦٨ ألف تاجر و @zidappcom. توصيل المطاعم وأنظمة نقاط البيع عبر @foodics اللي تشغل أكثر من ٣٠ ألف مطعم و @HungerStation و @JahezApp و @CareemKSA.
 
-الخدمات الحكومية: @najiz_sa — ٦٣+ واجهة من وزارة العدل. @etimadsa للمشتريات والعقود. @SaudiGOSI بيانات التوظيف عبر مصدر. @Qiwa_sa إدارة القوى العاملة. الجمارك عبر @Fasah للاستيراد والتصدير.
+الخدمات الحكومية عبر @najiz_sa بأكثر من ٦٣ واجهة من وزارة العدل. @etimadsa للمشتريات والعقود. @SaudiGOSI بيانات التوظيف عبر مصدر. @Qiwa_sa لإدارة القوى العاملة. الجمارك والاستيراد عبر @Fasah.
 
-واجهات الاتصالات من @stc_ksa @Mobily @ZainKSA — رسائل وتحقق ودفع. @Unifonic للواتساب والصوت. السياحة عبر @VisitSaudi.
+واجهات الاتصالات من @stc_ksa و @Mobily و @ZainKSA للرسائل والتحقق والدفع. @Unifonic للواتساب والصوت. السياحة عبر @VisitSaudi.
 
-البيانات المفتوحة من @SDAIA_SA — ١١,٤٣٩ مجموعة بيانات من ٢٨٩ جهة حكومية. مجانية بالكامل. بدون مفتاح.
+البيانات المفتوحة من @SDAIA_SA بأكثر من ١١ ألف مجموعة بيانات من ٢٨٩ جهة حكومية. مجانية بالكامل. بدون مفتاح.
 
 طقس لكل مدينة سعودية. صوت سعودي حقيقي عبر NAMAA.
 
-دليل تطبيقات سعودية لأكثر من ٥٠ تطبيق. @HungerStation @JahezApp ومرسول @noon وأبشر وتوكلنا ونفاذ وناجز وقوى. صانع محتوى سناب شات مبني للسوق السعودي. وصفات طبخ عربي. دليل سفر. مصطلحات صحية. سيرة ذاتية وإيميلات. مصطلحات قانونية. تعليم أطفال. إدارة حلال عبر مراح.
+دليل تطبيقات سعودية لأكثر من ٥٠ تطبيق. @HungerStation و @JahezApp ومرسول و @noon وأبشر وتوكلنا ونفاذ وناجز وقوى. صانع محتوى سناب شات مبني للسوق السعودي لأن السعودية حرفياً رقم ١ عالمياً باستخدام سناب. وصفات طبخ عربي مرتبة حسب المنطقة. كبسة وكشري ومنسف وكسكس. دليل سفر لأكثر من ٢٠ دولة عربية. مصطلحات صحية لفهم التقارير الطبية. كاتب سيرة ذاتية وإيميلات رسمية. مصطلحات قانونية. تعليم أطفال بالحروف والقصص. إدارة حلال لمربي الأغنام والماعز مبني على تطبيقنا مراح.
 
-٤ قوالب وكلاء جاهزة. عالم للبحث الإسلامي. مترجم للترجمة الاحترافية. مطوّر للبرمجة العربية. رائد أعمال للتجارة الإلكترونية والدفع والفوترة والشحن والخدمات الحكومية — كل شي مربوط.
+٤ قوالب وكلاء جاهزة. عالم للبحث الإسلامي بمهارات القرآن والحديث والفقه. مترجم للترجمة الاحترافية مع وعي باللهجات. مطوّر للبرمجة العربية مع مراجعة RTL وأمان bidi. رائد أعمال للتجارة الإلكترونية والدفع والفوترة والشحن والخدمات الحكومية كل شي مربوط.
 
-قناة واتساب مخصصة للخدمات الإسلامية. قناة تلغرام بصلاحية كاملة لكل الـ٦٠ مهارة.
+قناة واتساب مخصصة للخدمات الإسلامية لأن Meta منعت بوتات الذكاء الاصطناعي العامة بيناير ٢٠٢٦. قناة تلغرام بصلاحية كاملة لكل الـ٦٠ مهارة بوضعي polling و webhook.
 
-hooks تشتغل قبل كل رسالة. arabic-preprocess يكتشف لغتك ولهجتك ويحول العربيزي لعربي وينظف حروف bidi الخطيرة. hijri-bootstrap يحقن التاريخ الهجري تلقائياً. arabic-compact يحفظ تفضيلات لهجتك.
+hooks تشتغل قبل كل رسالة. arabic-preprocess يكتشف لغتك ولهجتك ويحول العربيزي لعربي وينظف حروف bidi الخطيرة. hijri-bootstrap يحقن التاريخ الهجري والمناسبات الإسلامية القادمة بكل جلسة جديدة تلقائياً. arabic-compact يحفظ تفضيلات لهجتك لما OpenClaw يضغط الجلسة عشان ما ينسى كيف تتكلم.
 
-مو fork. هو plugin. نفس معمارية openclaw-china. يتثبت بدقيقتين. ترخيص MIT. يشتغل مع أي نموذج تبيه. Claude و GPT و Gemini و Qwen و DeepSeek. نماذج عربية مثل Jais 2 و ALLaM و SILMA و Falcon H1 و Karnak و Fanar. محلي عبر Ollama أو vLLM أو LM Studio. انت تختار المخ ومخلب يتكفل بالعربي.
+مو fork. هو plugin. نفس معمارية openclaw-china اللي أثبتت إنك تقدر تبني تجربة إقليمية كاملة بدون ما تعدل الكود الأساسي. يتثبت بدقيقتين. ترخيص MIT. يشتغل مع أي نموذج تبيه. Claude و GPT و Gemini و Qwen و DeepSeek و GLM و Kimi. نماذج عربية مثل Jais 2 من الإمارات و ALLaM من السعودية و SILMA و Falcon H1 و Karnak من مصر و Fanar من قطر. محلي عبر Ollama أو vLLM أو LM Studio. انت تختار المخ ومخلب يتكفل بالعربي.
 
 من المجتمع السعودي مفتوح المصدر 🇸🇦 للعالم العربي كله
 
-كل الروابط اللي تحتاجها:
+github.com/Moshe-ship/mkhlab
+moshe-ship.github.io/mkhlab
+github.com/Moshe-ship/mkhlab/releases/tag/v0.4.0
+github.com/openclaw/openclaw
 
-🔗 المشروع: github.com/Moshe-ship/mkhlab
-🌐 الموقع: moshe-ship.github.io/mkhlab
-📦 آخر إصدار: github.com/Moshe-ship/mkhlab/releases/tag/v0.4.0
-📖 OpenClaw: github.com/openclaw/openclaw
+developer.wathq.sa
+zatca.gov.sa/en/E-Invoicing
+api.address.gov.sa
+developers.najiz.sa
+apiportal.etimad.sa
+portal.masdr.sa
+data.gov.sa
+fasah.zatca.gov.sa
 
-واجهات حكومية:
-🧾 فاتورة (ZATCA): zatca.gov.sa/en/E-Invoicing
-🏢 واثق: developer.wathq.sa
-📍 العنوان الوطني: api.address.gov.sa
-⚖️ ناجز: developers.najiz.sa
-📋 اعتماد: apiportal.etimad.sa
-👔 مصدر: portal.masdr.sa
-📊 البيانات المفتوحة: data.gov.sa
-🕌 زُر السعودية: partner.visitsaudi.com
-🛃 فسح: fasah.zatca.gov.sa
+docs.moyasar.com
+developers.tap.company
+docs.salla.dev
+docs.zid.sa
+docs.leantech.me
+docs.unifonic.com
+console.foodics.com
+partner.visitsaudi.com
 
-فنتك وتجارة إلكترونية:
-💳 ميسر: docs.moyasar.com
-💳 Tap Payments: developers.tap.company
-🛒 سلة: docs.salla.dev
-🛒 زد: docs.zid.sa
-🏦 Lean Technologies: docs.leantech.me
-💬 يونيفونك: docs.unifonic.com
-🍽️ فودكس: console.foodics.com
-
-ذكاء اصطناعي:
-🔊 Voxtral صوت عربي: mistral.ai
-🗣️ NAMAA صوت سعودي: huggingface.co/NAMAA-Space/NAMAA-Saudi-TTS
-🧠 AraGemma: huggingface.co/Omartificial-Intelligence-Space/AraGemma-Embedding-300m
-🦅 Falcon-H1: huggingface.co/tiiuae/Falcon-H1-Arabic-7B
-🤖 Jais 2: huggingface.co/inceptionai/Jais-2-8B-Chat-GGUF
-🇸🇦 ALLaM: huggingface.co/sdaia/allam-1-13b-instruct
-🏆 لوحة نماذج عربية: huggingface.co/blog/leaderboard-arabic
-
-الأدوات اللي بنيتها:
-🔬 arabench: تقييم جودة النماذج بالعربي
-✂️ khalas: محسّن توكنات عربية
-🛡️ sarih: فلتر محتوى عربي بدون نت
-🔒 bidi-guard: كاشف هجمات Trojan Source
-📝 qalam: مولّد توثيق عربي
-🧮 artok: حاسبة تكلفة توكنات
-🔍 majal: فاحص بيانات تدريب
-🕸️ safha: كاشط محتوى عربي
-↩️ raqeeb: فاحص مشاكل RTL
+huggingface.co/NAMAA-Space/NAMAA-Saudi-TTS
+huggingface.co/tiiuae/Falcon-H1-Arabic-7B
+huggingface.co/inceptionai/Jais-2-8B-Chat-GGUF
+huggingface.co/sdaia/allam-1-13b-instruct
+aladhan.com/prayer-times-api
+alquran.cloud
+mistral.ai
 
 حط نجمة ⭐ انسخه 🍴 ابنِ عليه 🔨
 العربي يستاهل ذكاء اصطناعي أفضل وهذي البداية
