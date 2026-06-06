@@ -84,7 +84,7 @@ fi
 echo ""
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "60 skills · 4 agents · 2 channels · MIT license"
+echo "61 skills · 6 agents · 2 channels · MIT license"
 echo "from Saudi Arabia 🇸🇦 for the Arab world"
 echo "github.com/Moshe-ship/mkhlab"
 echo ""

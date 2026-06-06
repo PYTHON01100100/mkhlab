@@ -293,6 +293,9 @@ Pre-configured Arabic agents for specialized use cases:
 | 📖 عالم (Scholar) | Quran, Hadith, Hijri, prayer, finance | Islamic research |
 | 🔄 مترجم (Translator) | Translation, dialect, grammar, tashkeel | Professional translation |
 | 💻 مطوّر (Developer) | Code review, bidi-guard, RTL, docs | Arabic-first development |
+| 💼 رائد أعمال (Entrepreneur) | Saudi business, ecommerce, payment, invoicing | Saudi business operations |
+| ✈️ Travel Advisor | Visa, travel, tourism, official sources | Travel planning for Arabic users |
+| ☁️ سحابة (Cloud) | Saudi telecom/cloud, procurement, legal, code review | Cloud architecture and deployment |
 
 ## License
 

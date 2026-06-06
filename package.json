@@ -23,6 +23,11 @@
       "./extensions/mkhlab-core/index.ts"
     ]
   },
+  "scripts": {
+    "demo": "bash scripts/demo.sh",
+    "audit": "npm audit --workspaces",
+    "map": "test -f PROJECT_MAP.md && sed -n '1,120p' PROJECT_MAP.md"
+  },
   "workspaces": [
     "extensions/*"
   ]
