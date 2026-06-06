@@ -2,7 +2,7 @@
   "$schema": "https://clawhub.com/schema/v1/skill-collection.json",
   "name": "mkhlab",
   "displayName": "مخلب — Arabic AI Skills",
-  "description": "The first Arabic-first plugin for OpenClaw. 40 skills covering Islamic services, Arabic NLP, translation, education, finance, code review, cooking, travel, health, and more.",
+  "description": "The first Arabic-first plugin for OpenClaw. 61 skills covering Islamic services, Arabic NLP, translation, education, business, Saudi APIs, travel, media, and more.",
   "version": "0.2.0",
   "author": {
     "name": "Mousa Abu Mazin",
@@ -27,47 +27,254 @@
     "education",
     "finance"
   ],
-  "languages": ["ar", "en"],
+  "languages": [
+    "ar",
+    "en"
+  ],
   "skills": [
-    {"path": "skills/prayer-times", "category": "islamic"},
-    {"path": "skills/hijri-calendar", "category": "islamic"},
-    {"path": "skills/quran-search", "category": "islamic"},
-    {"path": "skills/hadith-search", "category": "islamic"},
-    {"path": "skills/adhan-player", "category": "islamic"},
-    {"path": "skills/islamic-finance", "category": "islamic"},
-    {"path": "skills/translate", "category": "language"},
-    {"path": "skills/dialect-detect", "category": "language"},
-    {"path": "skills/arabic-grammar", "category": "language"},
-    {"path": "skills/tashkeel", "category": "language"},
-    {"path": "skills/arabic-poetry", "category": "language"},
-    {"path": "skills/arabic-names", "category": "language"},
-    {"path": "skills/voxtral-tts", "category": "media"},
-    {"path": "skills/whisper-arabic", "category": "media"},
-    {"path": "skills/arabic-ocr", "category": "media"},
-    {"path": "skills/voice-assistant", "category": "media"},
-    {"path": "skills/arabench", "category": "nlp-tools"},
-    {"path": "skills/khalas", "category": "nlp-tools"},
-    {"path": "skills/sarih", "category": "nlp-tools"},
-    {"path": "skills/bidi-guard", "category": "nlp-tools"},
-    {"path": "skills/qalam", "category": "nlp-tools"},
-    {"path": "skills/artok", "category": "nlp-tools"},
-    {"path": "skills/majal", "category": "nlp-tools"},
-    {"path": "skills/safha", "category": "nlp-tools"},
-    {"path": "skills/raqeeb", "category": "nlp-tools"},
-    {"path": "skills/arabic-rag", "category": "nlp-tools"},
-    {"path": "skills/arabic-web-search", "category": "search"},
-    {"path": "skills/arabic-code-review", "category": "developer"},
-    {"path": "skills/arabic-math", "category": "education"},
-    {"path": "skills/arabic-science", "category": "education"},
-    {"path": "skills/livestock-manager", "category": "agriculture"},
-    {"path": "skills/arabic-cooking", "category": "lifestyle"},
-    {"path": "skills/arab-travel", "category": "lifestyle"},
-    {"path": "skills/arabic-health", "category": "lifestyle"},
-    {"path": "skills/arabic-resume", "category": "business"},
-    {"path": "skills/arabic-email", "category": "business"},
-    {"path": "skills/arabic-legal", "category": "business"},
-    {"path": "skills/saudi-apps", "category": "regional"},
-    {"path": "skills/snapchat-content", "category": "regional"},
-    {"path": "skills/arabic-kids", "category": "education"}
+    {
+      "path": "skills/islamic/adhan-player",
+      "category": "islamic"
+    },
+    {
+      "path": "skills/islamic/hadith-search",
+      "category": "islamic"
+    },
+    {
+      "path": "skills/islamic/hijri-calendar",
+      "category": "islamic"
+    },
+    {
+      "path": "skills/islamic/islamic-finance",
+      "category": "islamic"
+    },
+    {
+      "path": "skills/islamic/prayer-times",
+      "category": "islamic"
+    },
+    {
+      "path": "skills/islamic/quran-search",
+      "category": "islamic"
+    },
+    {
+      "path": "skills/language/arabic-grammar",
+      "category": "language"
+    },
+    {
+      "path": "skills/language/arabic-names",
+      "category": "language"
+    },
+    {
+      "path": "skills/language/arabic-poetry",
+      "category": "language"
+    },
+    {
+      "path": "skills/language/dialect-detect",
+      "category": "language"
+    },
+    {
+      "path": "skills/language/tashkeel",
+      "category": "language"
+    },
+    {
+      "path": "skills/language/translate",
+      "category": "language"
+    },
+    {
+      "path": "skills/media/arabic-ocr",
+      "category": "media"
+    },
+    {
+      "path": "skills/media/saudi-tts",
+      "category": "media"
+    },
+    {
+      "path": "skills/media/voice-assistant",
+      "category": "media"
+    },
+    {
+      "path": "skills/media/voxtral-tts",
+      "category": "media"
+    },
+    {
+      "path": "skills/media/whisper-arabic",
+      "category": "media"
+    },
+    {
+      "path": "skills/nlp-tools/arabench",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/arabic-rag",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/artok",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/bidi-guard",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/khalas",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/majal",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/qalam",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/raqeeb",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/safha",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/nlp-tools/sarih",
+      "category": "nlp-tools"
+    },
+    {
+      "path": "skills/search/arabic-web-search",
+      "category": "search"
+    },
+    {
+      "path": "skills/developer/arabic-code-review",
+      "category": "developer"
+    },
+    {
+      "path": "skills/education/arabic-kids",
+      "category": "education"
+    },
+    {
+      "path": "skills/education/arabic-math",
+      "category": "education"
+    },
+    {
+      "path": "skills/education/arabic-science",
+      "category": "education"
+    },
+    {
+      "path": "skills/travel/arab-travel",
+      "category": "travel"
+    },
+    {
+      "path": "skills/travel/saudi-tourism",
+      "category": "travel"
+    },
+    {
+      "path": "skills/travel/travel-advisor-visa",
+      "category": "travel"
+    },
+    {
+      "path": "skills/lifestyle/arabic-cooking",
+      "category": "lifestyle"
+    },
+    {
+      "path": "skills/lifestyle/arabic-health",
+      "category": "lifestyle"
+    },
+    {
+      "path": "skills/lifestyle/livestock-manager",
+      "category": "lifestyle"
+    },
+    {
+      "path": "skills/lifestyle/snapchat-content",
+      "category": "lifestyle"
+    },
+    {
+      "path": "skills/business/arabic-email",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/arabic-legal",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/arabic-resume",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-business",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-customs",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-ecommerce",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-einvoice",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-food",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-hr",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-identity",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-legal",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-openbanking",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-pay",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-procurement",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-shipping",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-stocks",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/saudi-telecom",
+      "category": "business"
+    },
+    {
+      "path": "skills/business/unifonic",
+      "category": "business"
+    },
+    {
+      "path": "skills/regional/saudi-address",
+      "category": "regional"
+    },
+    {
+      "path": "skills/regional/saudi-apps",
+      "category": "regional"
+    },
+    {
+      "path": "skills/regional/saudi-opendata",
+      "category": "regional"
+    },
+    {
+      "path": "skills/regional/saudi-weather",
+      "category": "regional"
+    }
   ]
 }

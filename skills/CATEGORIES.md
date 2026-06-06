@@ -1,70 +1,8 @@
-# map.md — Mkhlab project, skills, and agents map
+# skills category index
 
-Quick navigation map for the Arabic-first OpenClaw plugin repository.
+Total skills: `61`
 
-## Project snapshot
-
-- Name: `@mkhlab/openclaw-mkhlab`
-- Version: `0.1.0`
-- Root: `/mnt/c/Users/d7oom/Desktop/presention/mkhlab`
-- Type: OpenClaw plugin / skill collection
-- Skills in `skills/`: `61`
-- Agents in `agents/`: `6`
-- Extensions in `extensions/`: `3`
-- Hooks in `hooks/`: `3`
-
-## Project tree
-
-```text
-mkhlab/
-├── skills/                  OpenClaw skill definitions by category
-├── hermes-skills/           Hermes-compatible skill mirror by category
-├── agents/                  Preconfigured Arabic agent personas
-├── extensions/              Plugin entry + channels
-│   ├── mkhlab-core/         Core tools/providers
-│   ├── telegram-channel/    Telegram Bot API channel
-│   └── whatsapp-channel/    WhatsApp Business Cloud API channel
-├── hooks/                   Bootstrap/preprocess/compact hooks
-├── docs/                    Landing page, assets, research notes
-├── scripts/                 Demo/helper scripts
-├── clawhub.json             Skill collection metadata
-├── package.json             npm workspace root
-├── SOUL.md                  Arabic persona rules
-├── IDENTITY.md              Branding
-├── CLAUDE.md                Repo instructions
-└── map.md                   This map
-```
-
-## Extensions map
-
-| Extension | Plugin id | Purpose |
-|---|---|---|
-| `mkhlab-core` | `mkhlab-core` | Arabic-first AI assistant plugin for OpenClaw. Prayer times, Hijri calendar, Quran search, translation, dialect detection, Arabic NLP tools, and more. |
-| `telegram-channel` | `mkhlab-telegram` | Telegram Bot API channel for مخلب. All 20+ Arabic skills available via Telegram bot. |
-| `whatsapp-channel` | `mkhlab-whatsapp` | WhatsApp Business API channel for مخلب. Scoped to Arabic skills: prayer times, translation, Quran search, Hijri calendar. |
-
-## Hooks map
-
-| Hook | Purpose |
-|---|---|
-| `arabic-compact` | Preserve Arabic dialect and cultural context during session compaction. |
-| `arabic-preprocess` | Pre-process Arabic messages before dispatch: detect dialect, convert Arabizi, normalize text. |
-| `hijri-bootstrap` | Inject current Hijri date and nearest prayer time into every new session. |
-
-## Agents map
-
-| Agent dir | Name | Main skills | Purpose |
-|---|---|---|---|
-| `agents/business/AGENT.md` | 💼 رائد أعمال | `saudi-business`, `saudi-einvoice`, `saudi-ecommerce`, `saudi-pay`, `saudi-shipping`, `saudi-stocks`, `saudi-hr`, `saudi-openbanking`, ... | مستشار أعمال سعودي — متخصص في التجارة الإلكترونية والدفع والفوترة والشحن والخدمات الحكومية. |
-| `agents/cloud/AGENT.md` | ☁️ سحابة | `saudi-telecom`, `saudi-opendata`, `saudi-business`, `saudi-procurement`, `saudi-legal`, `saudi-address`, `arabic-web-search`, `arabic-code-review`, ... | مهندس سحابة عربي — يساعد في اختيار مزودي السحابة، تصميم البنية، تقدير التكلفة، والأمان والامتثال في السعودية والمنطقة. |
-| `agents/developer/AGENT.md` | 💻 مطوّر | `arabic-code-review`, `bidi-guard`, `raqeeb`, `qalam`, `arabic-web-search`, `artok`, `khalas`, `saudi-einvoice`, ... | مطوّر عربي — مراجعة كود مع فحص RTL وUnicode وأمان النصوص العربية. |
-| `agents/scholar/AGENT.md` | 📖 عالم | `quran-search`, `hadith-search`, `hijri-calendar`, `prayer-times`, `adhan-player`, `islamic-finance`, `translate`, `saudi-legal` | باحث إسلامي — متخصص في القرآن والحديث والفقه والتاريخ الإسلامي. |
-| `agents/translator/AGENT.md` | 🔄 مترجم | `translate`, `dialect-detect`, `tashkeel`, `arabic-grammar`, `arabic-science`, `arabic-legal`, `saudi-hr`, `saudi-opendata` | مترجم عربي-إنجليزي محترف — يراعي اللهجات والسياق والمصطلحات المتخصصة. |
-| `agents/travel-advisor/AGENT.md` | ✈️ travel-advisor | `travel-advisor-visa`, `arabic-web-search`, `saudi-tourism`, `arab-travel` | مستشار سفر وسياحة — يساعد في التأشيرات، متطلبات الدخول، والتخطيط للسفر مع الاعتماد على المصادر الرسمية. |
-
-## Skills map by category
-
-### islamic (6)
+## islamic (6)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -75,7 +13,7 @@ mkhlab/
 | `prayer-times` | `skills/islamic/prayer-times` | أوقات الصلاة — احسب أوقات الصلوات الخمس بناءً على موقع المستخدم. استخدم هذه المهارة عندما يسأل المستخدم عن وقت الصلاة أو الأذان أو الإقامة. |
 | `quran-search` | `skills/islamic/quran-search` | بحث في القرآن الكريم — ابحث عن آيات بالكلمة أو رقم السورة والآية. استخدم عندما يسأل المستخدم عن آية قرآنية أو تفسير أو سورة. |
 
-### language (6)
+## language (6)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -86,7 +24,7 @@ mkhlab/
 | `tashkeel` | `skills/language/tashkeel` | التشكيل — أضف الحركات (الفتحة، الضمة، الكسرة، السكون، الشدة، التنوين) على النصوص العربية. استخدم عندما يطلب المستخدم تشكيل نص. |
 | `translate` | `skills/language/translate` | ترجمة عربي ↔ إنجليزي — ترجم نصوص بين العربية والإنجليزية مع مراعاة اللهجات والسياق. استخدم عندما يطلب المستخدم ترجمة أو يرسل نص بلغة ويريده بالأخرى. |
 
-### media (5)
+## media (5)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -96,7 +34,7 @@ mkhlab/
 | `voxtral-tts` | `skills/media/voxtral-tts` | تحويل النص لصوت عربي — حوّل أي نص عربي لملف صوتي باستخدام Voxtral أو SILMA TTS. استخدم عندما يريد المستخدم سماع نص أو توليد صوت عربي. |
 | `whisper-arabic` | `skills/media/whisper-arabic` | تحويل الصوت لنص عربي — فرّغ ملفات صوتية عربية لنص مكتوب باستخدام Whisper. استخدم عندما يريد المستخدم تفريغ صوت أو فيديو عربي. |
 
-### nlp-tools (10)
+## nlp-tools (10)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -111,19 +49,19 @@ mkhlab/
 | `safha` | `skills/nlp-tools/safha` | كاشط محتوى عربي — اجمع محتوى عربي من الويب، نظّفه، واكتشف لهجته. مخصص لتجهيز بيانات التدريب. |
 | `sarih` | `skills/nlp-tools/sarih` | فلترة المحتوى العربي — اكتشف المحتوى السام والكراهية والسبام بـ5 لهجات عربية. يعمل بدون إنترنت. استخدم لفحص النصوص أو تنظيف بيانات. |
 
-### search (1)
+## search (1)
 
 | Skill | Path | Description |
 |---|---|---|
 | `arabic-web-search` | `skills/search/arabic-web-search` | بحث ويب عربي — ابحث في الإنترنت بالعربي مع أولوية للمواقع العربية الموثوقة. استخدم عندما يسأل المستخدم سؤال يحتاج معلومات حديثة. |
 
-### developer (1)
+## developer (1)
 
 | Skill | Path | Description |
 |---|---|---|
 | `arabic-code-review` | `skills/developer/arabic-code-review` | مراجعة كود عربي — راجع الكود مع فحص التعامل مع النصوص العربية وRTL والتعليقات العربية. استخدم عندما يطلب المستخدم مراجعة كود يتعامل مع العربي. |
 
-### education (3)
+## education (3)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -131,7 +69,7 @@ mkhlab/
 | `arabic-math` | `skills/education/arabic-math` | رياضيات بالعربي — حل مسائل رياضية مع شرح بالعربي ودعم الأرقام العربية (٠-٩). استخدم عندما يطلب المستخدم حل مسألة رياضية أو شرح مفهوم رياضي. |
 | `arabic-science` | `skills/education/arabic-science` | مصطلحات علمية عربية — ترجم واشرح مصطلحات علمية بالعربي. يغطي: فيزياء، كيمياء، أحياء، حاسوب، هندسة. استخدم عندما يسأل عن مصطلح علمي أو يحتاج شرح علمي بالعربي. |
 
-### travel (3)
+## travel (3)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -139,7 +77,7 @@ mkhlab/
 | `saudi-tourism` | `skills/travel/saudi-tourism` | السياحة في السعودية — Saudi tourism attractions, events, visa info, and tourism APIs |
 | `travel-advisor-visa` | `skills/travel/travel-advisor-visa` | مستشار السفر والتأشيرات — افحص متطلبات الدخول والتأشيرة حسب جنسية المستخدم ووجهته، مع أولوية للمصادر الرسمية مثل مواقع السفارات، وزارات الخارجية، والبوابات الحكومية. |
 
-### lifestyle (4)
+## lifestyle (4)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -148,7 +86,7 @@ mkhlab/
 | `livestock-manager` | `skills/lifestyle/livestock-manager` | إدارة الحلال — ساعد مربي الأغنام والماعز في إدارة قطيعهم: تغذية، صحة، ولادات، مبيعات، حسابات. مبني على تطبيق مراح. استخدم عندما يسأل المستخدم عن تربية الحلال أو إدارة المراح. |
 | `snapchat-content` | `skills/lifestyle/snapchat-content` | محتوى سناب شات — ساعد في إنشاء محتوى سناب شات عربي: أفكار سنابات، نصوص، استراتيجيات نمو. استخدم عندما يسأل المستخدم عن سناب شات أو صناعة محتوى عربي. |
 
-### business (18)
+## business (18)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -171,7 +109,7 @@ mkhlab/
 | `saudi-telecom` | `skills/business/saudi-telecom` | واجهات شركات الاتصالات السعودية — Saudi telecom developer APIs for SMS, OTP, and payments via STC, Mobily, Zain |
 | `unifonic` | `skills/business/unifonic` | يونيفونك — إرسال رسائل SMS وواتساب ومكالمات صوتية — Unifonic Saudi CPaaS for SMS, WhatsApp, voice, and OTP |
 
-### regional (4)
+## regional (4)
 
 | Skill | Path | Description |
 |---|---|---|
@@ -179,20 +117,3 @@ mkhlab/
 | `saudi-apps` | `skills/regional/saudi-apps` | تطبيقات سعودية — دليل التطبيقات والخدمات السعودية المحلية: توصيل، حكومية، بنكية، تسوق. استخدم عندما يسأل المستخدم عن تطبيق أو خدمة سعودية أو خليجية. |
 | `saudi-opendata` | `skills/regional/saudi-opendata` | البيانات المفتوحة السعودية — Saudi Open Data Portal with 11,000+ datasets from 289+ government organizations |
 | `saudi-weather` | `skills/regional/saudi-weather` | طقس المدن السعودية — استعلم عن درجة الحرارة والرطوبة والرياح في مدن المملكة. استخدم عندما يسأل المستخدم عن الطقس في مدينة سعودية. |
-
-## Common commands
-
-```bash
-npm install
-npm run audit
-npm run demo
-npm run map
-openclaw skills list
-```
-
-## Conventions
-
-- Skill instructions/descriptions are Arabic-first.
-- TypeScript code and comments are English.
-- `SKILL.md` frontmatter uses OpenClaw format.
-- Keep API keys and channel credentials in environment/config, never in repo files.

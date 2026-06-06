@@ -17,8 +17,8 @@ This is a quick orientation map for the مخلب / Mkhlab OpenClaw plugin reposi
 
 ```text
 mkhlab/
-├── skills/                  OpenClaw SKILL.md definitions
-├── hermes-skills/           Hermes-compatible mirror of the skills
+├── skills/                  OpenClaw SKILL.md definitions by category
+├── hermes-skills/           Hermes-compatible mirror by category
 ├── agents/                  Preconfigured Arabic agent templates
 ├── extensions/              Plugin entry + messaging channels
 │   ├── mkhlab-core/         Core OpenClaw tools/providers
@@ -57,17 +57,19 @@ mkhlab/
 
 ## Skill categories from clawhub.json
 
-- `agriculture` (1): `livestock-manager`
-- `business` (3): `arabic-email`, `arabic-legal`, `arabic-resume`
-- `developer` (1): `arabic-code-review`
-- `education` (3): `arabic-kids`, `arabic-math`, `arabic-science`
+All `61` OpenClaw skills are listed as nested category folders: `skills/<category>/<skill>/`. Hermes mirror skills use the same nested layout: `hermes-skills/<category>/<skill>/`.
+
 - `islamic` (6): `adhan-player`, `hadith-search`, `hijri-calendar`, `islamic-finance`, `prayer-times`, `quran-search`
 - `language` (6): `arabic-grammar`, `arabic-names`, `arabic-poetry`, `dialect-detect`, `tashkeel`, `translate`
-- `lifestyle` (3): `arab-travel`, `arabic-cooking`, `arabic-health`
-- `media` (4): `arabic-ocr`, `voice-assistant`, `voxtral-tts`, `whisper-arabic`
+- `media` (5): `arabic-ocr`, `saudi-tts`, `voice-assistant`, `voxtral-tts`, `whisper-arabic`
 - `nlp-tools` (10): `arabench`, `arabic-rag`, `artok`, `bidi-guard`, `khalas`, `majal`, `qalam`, `raqeeb`, `safha`, `sarih`
-- `regional` (2): `saudi-apps`, `snapchat-content`
 - `search` (1): `arabic-web-search`
+- `developer` (1): `arabic-code-review`
+- `education` (3): `arabic-kids`, `arabic-math`, `arabic-science`
+- `travel` (3): `arab-travel`, `saudi-tourism`, `travel-advisor-visa`
+- `lifestyle` (4): `arabic-cooking`, `arabic-health`, `livestock-manager`, `snapchat-content`
+- `business` (18): `arabic-email`, `arabic-legal`, `arabic-resume`, `saudi-business`, `saudi-customs`, `saudi-ecommerce`, `saudi-einvoice`, `saudi-food`, `saudi-hr`, `saudi-identity`, `saudi-legal`, `saudi-openbanking`, `saudi-pay`, `saudi-procurement`, `saudi-shipping`, `saudi-stocks`, `saudi-telecom`, `unifonic`
+- `regional` (4): `saudi-address`, `saudi-apps`, `saudi-opendata`, `saudi-weather`
 
 ## File-type snapshot
 
